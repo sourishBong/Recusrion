@@ -10,8 +10,30 @@ public class SelectionSort {
     public static void main(String[] args) {
         int arr[]={5,3,4,1,2};
         // int ans[]=SelectionSortIterative2(arr);
-        int ans[]=SelectionSortRecursion(arr);
+        //int ans[]=SelectionSortRecursion(arr);
+        int ans[]=SelectionSortRecursion2(arr);
         System.out.println(Arrays.toString(ans));
+    }
+
+    private static int[] SelectionSortRecursion2(int[] arr) {
+        return helper2(arr,arr.length,0,0);
+    }
+
+    private static int[] helper2(int[] arr, int r, int c, int max) {
+        if(r==0)
+            return arr;
+
+        if(c<r){
+            if(arr[c]>arr[max])
+                return helper2(arr,r,c+1,c);
+            else
+                return helper2(arr,r,c+1,max);
+        }else{
+            int temp=arr[max];
+            arr[max]=arr[r-1];
+            arr[r-1]=temp;
+            return helper2(arr,r-1,0,0);
+        }
     }
 
     private static int[] SelectionSortRecursion(int[] arr) {
